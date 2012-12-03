@@ -3,7 +3,9 @@ module.exports = {
   , port: 3000
   , instagram: {
         client_id: ''
-      , secret: ''
-    }
+      , secret: '' }
+  , twitter:
+      { key: ''
+      , secret: '' }
 };
 

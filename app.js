@@ -23,6 +23,7 @@ app.get('/', function (request, response) {
     response.send([
         '<ul>',
           '<li><a href="/instagram">Instagram</a>',
+          '<li><a href="/twitter">Twitter</a>',
         '</ul>'
     ].join('\n'));
 });
@@ -32,7 +33,6 @@ if (!/^https:\/\//.test(host)) {
     host = 'http://' + host;
 }
 
-//Collect instagram tokens => visit /instagram_token
 oauth.instagram(
     config.instagram.client_id
   , config.instagram.secret
@@ -44,6 +44,19 @@ oauth.instagram(
     }
     tokens.write('instgram,' + user.username + ',' + user.id + ',' + token + '\n');
     response.send('Instagram token received. <a href="/">Back</a>');
+});
+
+oauth.twitter(
+    config.twitter.key
+  , config.twitter.secret
+  , app
+  , host
+  , function (err, access, user, response) {
+    if (err) {
+        return response.send(500);
+    }
+    tokens.write('twitter,' + user + ',' + access.token + ',' + access.secret + '\n');
+    response.send('Twitter token received. <a href="/">Back</a>');
 });
 
 console.log('Listening on %s:%s', config.host, config.port);
