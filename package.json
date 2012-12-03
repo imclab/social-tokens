@@ -1,0 +1,13 @@
+{
+  "name": "social-tokens",
+  "version": "0.1.0",
+  "description": "An endpoint that fetches social tokens",
+  "main": "app.js",
+  "repository": "",
+  "author": "Sydney Stockholm <opensource@sydneystockholm.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "*",
+    "request": "*"
+  }
+}
