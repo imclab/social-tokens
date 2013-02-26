@@ -40,7 +40,8 @@ oauth.instagram(
   , host
   , function (err, token, user, response) {
     if (err) {
-        return response.send(500);
+        response.statusCode = 500;
+        return response.send(err);
     }
     tokens.write('instgram,' + user.username + ',' + user.id + ',' + token + '\n');
     response.send('Instagram token received. <a href="/">Back</a>');
@@ -53,7 +54,8 @@ oauth.twitter(
   , host
   , function (err, access, user, response) {
     if (err) {
-        return response.send(500);
+        response.statusCode = 500;
+        return response.send(err);
     }
     tokens.write('twitter,' + user + ',' + access.token + ',' + access.secret + '\n');
     response.send('Twitter token received. <a href="/">Back</a>');
@@ -61,3 +63,4 @@ oauth.twitter(
 
 console.log('Listening on %s:%s', config.host, config.port);
 app.listen(config.port);
+
