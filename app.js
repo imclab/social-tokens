@@ -43,7 +43,7 @@ oauth.instagram(
         response.statusCode = 500;
         return response.send(err);
     }
-    tokens.write('instgram,' + user.username + ',' + user.id + ',' + token + '\n');
+    tokens.write('instgram,' + host + ',' + user.username + ',' + user.id + ',' + token + '\n');
     response.send('Instagram token received. <a href="/">Back</a>');
 });
 
@@ -57,7 +57,7 @@ oauth.twitter(
         response.statusCode = 500;
         return response.send(err);
     }
-    tokens.write('twitter,' + user + ',' + access.token + ',' + access.secret + '\n');
+    tokens.write('twitter,' + host + ',' + user + ',' + access.token + ',' + access.secret + '\n');
     response.send('Twitter token received. <a href="/">Back</a>');
 });
 
