@@ -18,12 +18,19 @@ app.use(express.cookieParser());
 app.use(express.bodyParser());
 app.use(express.session({ secret: 'foobar' }));
 
-app.get('/', function (request, response) {
+app.get('/tokens', function (request, response) {
     response.setHeader('content-type', 'text/html');
     response.send([
+        '<p>',
+            'Hello! In order to show tweets and instagram media ',
+            'we need you to sign-in to both services below. ',
+            'Don\'t worry, we don\'t actually see your username or password, ',
+            'twitter and instagram handle authentication and send us a token ',
+            'which we can use to fetch your social data.',
+        '</p>',
         '<ul>',
-          '<li><a href="/instagram">Instagram</a>',
-          '<li><a href="/twitter">Twitter</a>',
+          '<li><a href="/tokens/instagram">Instagram</a>',
+          '<li><a href="/tokens/twitter">Twitter</a>',
         '</ul>'
     ].join('\n'));
 });
