@@ -61,6 +61,18 @@ oauth.twitter(
     response.send('Twitter token received. <a href="/">Back</a>');
 });
 
-console.log('Listening on %s:%s', config.host, config.port);
-app.listen(config.port);
+if (/^[0-9]+$/.test(config.port)) {
+    app.listen(config.port, function () {
+        console.log('Listening on %s:%s', config.host, config.port);
+    });
+} else {
+    try {
+        fs.unlinkSync(port);
+    } catch (e) {}
+    var mask = process.umask(0);
+    app.listen(port, function () {
+        console.log('Listening on %s', config.port);
+        process.umask(mask);
+    });
+}
 
