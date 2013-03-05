@@ -54,7 +54,7 @@ oauth.instagram(
         return response.send(err);
     }
     tokens.write('instgram,' + host + ',' + user.username + ',' + user.id + ',' + token + '\n');
-    response.send('Instagram token received. <a href="/">Back</a>');
+    response.send('Instagram token received. <a href="/tokens">Back</a>');
 });
 
 oauth.twitter(
@@ -68,7 +68,7 @@ oauth.twitter(
         return response.send(err);
     }
     tokens.write('twitter,' + host + ',' + user + ',' + access.token + ',' + access.secret + '\n');
-    response.send('Twitter token received. <a href="/">Back</a>');
+    response.send('Twitter token received. <a href="/tokens">Back</a>');
 });
 
 if (/^\d+$/.test(config.port)) {
