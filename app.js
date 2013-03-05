@@ -77,10 +77,10 @@ if (/^\d+$/.test(config.port)) {
     });
 } else {
     try {
-        fs.unlinkSync(port);
+        fs.unlinkSync(config.port);
     } catch (e) {}
     var mask = process.umask(0);
-    app.listen(port, function () {
+    app.listen(config.port, function () {
         console.log('Listening on %s', config.port);
         process.umask(mask);
     });
