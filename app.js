@@ -28,7 +28,10 @@ app.get('/', function (request, response) {
     ].join('\n'));
 });
 
-var host = config.host + ':' + config.port;
+var host = config.host;
+if (/^\d+$/.test(config.port)) {
+    host += ':' + config.port;
+}
 if (!/^https:\/\//.test(host)) {
     host = 'http://' + host;
 }
@@ -61,7 +64,7 @@ oauth.twitter(
     response.send('Twitter token received. <a href="/">Back</a>');
 });
 
-if (/^[0-9]+$/.test(config.port)) {
+if (/^\d+$/.test(config.port)) {
     app.listen(config.port, function () {
         console.log('Listening on %s:%s', config.host, config.port);
     });
